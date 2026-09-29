@@ -47,22 +47,21 @@ window.addEventListener("resize", function () {
 const music = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
-musicToggle.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-    musicToggle.textContent = "🔊";
-  } else {
-    music.pause();
-    musicToggle.textContent = "🔇";
-  }
-});
-
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    music.pause();
-    musicToggle.textContent = "🔇";
-  }
-});
+if (music && musicToggle) {
+  musicToggle.addEventListener("click", async () => {
+    try {
+      if (music.paused) {
+        await music.play();
+        musicToggle.textContent = "🔊";
+      } else {
+        music.pause();
+        musicToggle.textContent = "🔇";
+      }
+    } catch (error) {
+      console.error("Music error:", error);
+    }
+  });
+}
 
 window.addEventListener("pagehide", () => {
   music.pause();
