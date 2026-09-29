@@ -1,6 +1,53 @@
 // ================================
+// SUPABASE VIEW COUNTER
+// ================================
+
+const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const views = document.getElementById("views");
+
+function getVisitorId() {
+  let id = localStorage.getItem("ryuVisitorId");
+
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("ryuVisitorId", id);
+  }
+
+  return id;
+}
+
+async function registerView() {
+  try {
+    const { data, error } = await supabase.rpc("register_view", {
+      p_visitor_id: getVisitorId()
+    });
+
+    if (error) {
+      console.error("Visitor counter error:", error);
+      return;
+    }
+
+    if (views) {
+      views.textContent = String(data).padStart(3, "0");
+    }
+
+  } catch (error) {
+    console.error("Counter error:", error);
+  }
+}
+
+registerView();
+
+
+// ================================
 // 3D CARD EFFECT
-// DESKTOP ONLY
 // ================================
 
 const card = document.querySelector(".profile-card");
@@ -44,12 +91,20 @@ window.addEventListener("resize", function () {
 
 });
 
+
+// ================================
+// MUSIC
+// ================================
+
 const music = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
 if (music && musicToggle) {
-  musicToggle.addEventListener("click", async () => {
+
+  musicToggle.addEventListener("click", async function () {
+
     try {
+
       if (music.paused) {
         await music.play();
         musicToggle.textContent = "🔊";
@@ -57,52 +112,37 @@ if (music && musicToggle) {
         music.pause();
         musicToggle.textContent = "🔇";
       }
+
     } catch (error) {
       console.error("Music error:", error);
     }
+
   });
+
 }
 
-window.addEventListener("pagehide", () => {
-  music.pause();
-  music.currentTime = 0;
+
+// ================================
+// STOP MUSIC WHEN LEAVING
+// ================================
+
+document.addEventListener("visibilitychange", function () {
+
+  if (document.hidden && music) {
+    music.pause();
+
+    if (musicToggle) {
+      musicToggle.textContent = "🔇";
+    }
+  }
+
 });
 
-/*visible*/
-const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co";
-const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
+window.addEventListener("pagehide", function () {
 
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-const views = document.getElementById("views");
-
-function getVisitorId() {
-  let id = localStorage.getItem("ryuVisitorId");
-
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem("ryuVisitorId", id);
+  if (music) {
+    music.pause();
+    music.currentTime = 0;
   }
 
-  return id;
-}
-
-async function registerView() {
-  const { data, error } = await supabase.rpc("register_view", {
-    p_visitor_id: getVisitorId()
-  });
-
-  if (error) {
-    console.error("Visitor counter:", error);
-    return;
-  }
-
-  if (views) {
-    views.textContent = String(data).padStart(3, "0");
-  }
-}
-
-registerView();
+});
