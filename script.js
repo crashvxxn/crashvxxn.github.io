@@ -1,11 +1,7 @@
-// ================================
-// SUPABASE VIEW COUNTER
-// ================================
-
 const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
@@ -24,22 +20,17 @@ function getVisitorId() {
 }
 
 async function registerView() {
-  try {
-    const { data, error } = await supabase.rpc("register_view", {
-      p_visitor_id: getVisitorId()
-    });
+  const { data, error } = await supabaseClient.rpc("register_view", {
+    p_visitor_id: getVisitorId()
+  });
 
-    if (error) {
-      console.error("Visitor counter error:", error);
-      return;
-    }
+  if (error) {
+    console.error("COUNTER ERROR:", error);
+    return;
+  }
 
-    if (views) {
-      views.textContent = String(data).padStart(3, "0");
-    }
-
-  } catch (error) {
-    console.error("Counter error:", error);
+  if (views) {
+    views.textContent = String(data).padStart(3, "0");
   }
 }
 
