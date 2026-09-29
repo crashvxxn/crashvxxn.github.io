@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ryuheii</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND VIDEO -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <div class="video-overlay"></div>
+
+  <!-- DECORATION -->
+  <div class="noise"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  
+  <img src="logo.png" class="profile-logo" alt="Logo">
+
+  <main class="profile-card">
+
+    <div class="top-line">
+      <span></span>
+      <button class="music-toggle" id="musicToggle">       🔇     </button>
+    </div>
+
+      <audio id="bgMusic" loop>
+      <source src="wiv.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- PROFILE -->
+    <section class="profile">
+
+      <div class="avatar-wrapper">
+
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+
+        <div class="avatar">
+          <!-- GANTI FOTO DI SINI -->
+          <img src="pp.jpg" alt="Ryuheii">
+        </div>
+
+        <div class="avatar-mark">
+          
+        </div>
+
+      </div>
+
+      <div class="name">
+  <span class="symbol star1">☩</span>
+
+  <h1 class="glitch" data-text="Ryuheii">
+    Ryuheii
+    <span class="name-spark star2">⛧</span>
+  </h1>
+
+  <span class="symbol star3">✦</span>
+</div>
+
+      <p class="quote">
+        Just an angel who lost their wings.
+      </p>
+
+      <div class="tags">
+      </div>
+
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="socials">
+
+      <a href="https://github.com/crashvxxn" target="_blank">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+
+      <a href="https://www.instagram.com/ryukagiroii" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+
+      <a href="https://open.spotify.com/user/31lyvf55e4lueldhrhydub3byqwm?si=-tDu_aXzS-uMcG3e408bjw&utm_source=copy-link" target="_blank">
+        <i class="fa-brands fa-spotify"></i>
+        <span>Spotify</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@xrayznn?_r=1&_t=ZS-9A45Pdgc472" target="_blank">
+        <i class="fa-brands fa-tiktok"></i>
+        <span>TikTok</span>
+      </a>
+
+    </section>
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+
+      <div class="views">
+        <i class="fa-regular fa-eye"></i>
+        <span id="views">000</span>
+      </div>
+
+      <div class="coordinates">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <div class="corner-text">
+    <p>©2606 Ryuheii</p>
+    <p>NOTHING REAL IS HERE</p>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
