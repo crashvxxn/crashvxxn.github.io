@@ -91,7 +91,7 @@ window.addEventListener("pagehide", () => {
 });
 
 /*visible*/
-const SUPABASE_URL = "";
+const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co/rest/v1/";
 const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
 
 const supabase = window.supabase.createClient(
