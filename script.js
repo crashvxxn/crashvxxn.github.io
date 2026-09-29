@@ -1,25 +1,4 @@
 // ================================
-// VIEW COUNTER
-// ================================
-
-const views = document.getElementById("views");
-
-let viewCount = localStorage.getItem("profileViewsV2");
-
-if (viewCount === null) {
-  viewCount = 0;
-} else {
-  viewCount = Number(viewCount) + 1;
-}
-
-localStorage.setItem("profileViewsV2", viewCount);
-
-if (views) {
-  views.textContent = String(viewCount).padStart(3, "0");
-}
-
-
-// ================================
 // 3D CARD EFFECT
 // DESKTOP ONLY
 // ================================
@@ -91,7 +70,7 @@ window.addEventListener("pagehide", () => {
 });
 
 /*visible*/
-const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://kwdodscnscditdzgptbd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
 
 const supabase = window.supabase.createClient(
