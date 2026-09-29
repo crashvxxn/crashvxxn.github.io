@@ -89,3 +89,42 @@ window.addEventListener("pagehide", () => {
   music.pause();
   music.currentTime = 0;
 });
+
+/*visible*/
+const SUPABASE_URL = "";
+const SUPABASE_KEY = "sb_publishable_dqBnsHMB7ABGJ2yBe9A7ng_yMOAIIK8";
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const views = document.getElementById("views");
+
+function getVisitorId() {
+  let id = localStorage.getItem("ryuVisitorId");
+
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("ryuVisitorId", id);
+  }
+
+  return id;
+}
+
+async function registerView() {
+  const { data, error } = await supabase.rpc("register_view", {
+    p_visitor_id: getVisitorId()
+  });
+
+  if (error) {
+    console.error("Visitor counter:", error);
+    return;
+  }
+
+  if (views) {
+    views.textContent = String(data).padStart(3, "0");
+  }
+}
+
+registerView();
